@@ -10,9 +10,10 @@ import CoreLocation
 
 class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-//    https://api.yelp.com/v3/businesses/search?latitude=48.8534&longitude=2.3488&categories=restaurants&limit=6
-    
     var locationManager = CLLocationManager()
+    
+    @Published var restaurants = [Business]()
+    @Published var sights = [Business]()
     
     override init() {
         // Init method of NSObject
@@ -49,7 +50,7 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             
             // TODO: if we have the coordinates of the user, send into Yelp API
             getBusinesses(category: K.sightsKey, location: userLocation!)
-//            getBusinesses(category: "restaurants", location: userLocation!)
+            getBusinesses(category: K.restaurantsKey, location: userLocation!)
         }
         
 
@@ -85,7 +86,30 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             let task = session.dataTask(with: request) { data, response, error in
                 
                 if error == nil {
-                    print(response)
+                    // Parse data
+                    guard data != nil else {
+                        print("data retrieved is nil")
+                        return
+                    }
+                    
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        let result = try decoder.decode(BusinessSearch.self, from: data!)
+                        
+                        DispatchQueue.main.async {
+                            switch category {
+                            case K.sightsKey:
+                                self.sights = result.businesses
+                            case K.restaurantsKey:
+                                self.restaurants = result.businesses
+                            default:
+                                break
+                            }
+                        }
+                    } catch {
+                        print("error parsing data", error)
+                    }
                 }
                 
             }
