@@ -10,6 +10,8 @@ import CoreLocation
 
 class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
+//    https://api.yelp.com/v3/businesses/search?latitude=48.8534&longitude=2.3488&categories=restaurants&limit=6
+    
     var locationManager = CLLocationManager()
     
     override init() {
@@ -37,12 +39,62 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Gives us the locaton of the user
-        print(locations.first ?? "no location")
+        let userLocation = locations.first
         
-        // TODO: if we have the coordinates of the user, send into Yelp API
+        if userLocation != nil {
+            
+            // We have a location
+            // Stop requesting the location after we get it once
+            locationManager.startUpdatingLocation()
+            
+            // TODO: if we have the coordinates of the user, send into Yelp API
+            getBusinesses(category: K.sightsKey, location: userLocation!)
+//            getBusinesses(category: "restaurants", location: userLocation!)
+        }
         
-        // Stop requesting the location after we get it once
-        locationManager.startUpdatingLocation()
+
+    }
+    
+    // MARK - Yelp API methods
+    
+    func getBusinesses(category: String, location: CLLocation) {
+        
+        // CReate URL Request
+        var urlComponents = URLComponents(string: K.yelpApiURL)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "latitude", value: String(location.coordinate.latitude)),
+            URLQueryItem(name: "longitude", value: String(location.coordinate.longitude)),
+            URLQueryItem(name: "categories", value: category),
+            URLQueryItem(name: "limit", value: "6")
+        ]
+        
+        let url = urlComponents?.url
+        
+        if let url = url {
+            
+            // URL Object is not nil, we can proceed to the request
+            // Create URL Request
+            var request  = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10.0)
+            request.httpMethod = "GET"
+            request.addValue("Bearer " + Secret.yelpAPIKey, forHTTPHeaderField: "Authorization")
+            
+            // GEt URL Sesssion
+            let session = URLSession.shared
+            
+            // Create DataTask
+            let task = session.dataTask(with: request) { data, response, error in
+                
+                if error == nil {
+                    print(response)
+                }
+                
+            }
+            
+            // Start the task
+            task.resume()
+            
+        }
+
     }
     
 }
