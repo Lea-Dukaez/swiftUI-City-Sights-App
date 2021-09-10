@@ -16,8 +16,9 @@ struct BusinessSection: View {
         
         Section (header: BusinessSectionHeader(title: title)) {
             ForEach(businesses) { business in
-                BusinessCell(business: business)
-                Divider()
+                NavigationLink(destination: BusinessDetail(business: business)) {
+                        BusinessCell(business: business)
+                }
             }
         }
         

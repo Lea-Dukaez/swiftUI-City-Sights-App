@@ -36,7 +36,7 @@ struct BusinessCell: View {
 
 struct BusinessCell_Previews: PreviewProvider {
     static var previews: some View {
-        let model = ContentModel()
-        BusinessCell(business: model.restaurants[0])
+
+        BusinessCell(business: Business.getTestData())
     }
 }

@@ -11,6 +11,7 @@ struct BusinessList: View {
     @EnvironmentObject var model : ContentModel
     
     var body: some View {
+   
         ScrollView (showsIndicators: false) {
             LazyVStack (alignment: .leading, pinnedViews: [.sectionHeaders]) {
                 
@@ -20,6 +21,8 @@ struct BusinessList: View {
 
             }
         }
+    
+
     }
 }
 

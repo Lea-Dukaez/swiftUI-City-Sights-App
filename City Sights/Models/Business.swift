@@ -12,7 +12,7 @@ class Business: Decodable, Identifiable, ObservableObject {
     @Published var imageData: Data?
     
     var id: String?
-    var alias: String
+    var alias: String?
     var name: String?
     var imageUrl: String?
     var isClosed: Bool?
@@ -65,6 +65,19 @@ class Business: Decodable, Identifiable, ObservableObject {
             }
             dataTask.resume()
         }
+    }
+    
+    static func getTestData() -> Business {
+        var b = Business()
+        b.name = "India PlayHouse"
+        b.location?.address1 = "450 Post St."
+        b.location?.city = "San Francisco"
+        b.location?.zipCode = "CA 94165"
+        b.location?.country = "United State"
+        b.location?.country = "United State"
+        b.reviewCount = 369
+        b.rating = 3.5
+        return b
     }
 }
 
