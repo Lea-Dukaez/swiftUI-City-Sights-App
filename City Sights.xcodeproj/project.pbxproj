@@ -16,6 +16,11 @@
 		662591A026EA32AA00CCFDF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625919F26EA32AA00CCFDF5 /* Constants.swift */; };
 		662591A226EA34DC00CCFDF5 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662591A126EA34DC00CCFDF5 /* Business.swift */; };
 		662591A426EA374300CCFDF5 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662591A326EA374300CCFDF5 /* BusinessSearch.swift */; };
+		662591A926EB2A2A00CCFDF5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662591A826EB2A2A00CCFDF5 /* HomeView.swift */; };
+		662591AC26EB2E9900CCFDF5 /* BusinessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662591AB26EB2E9900CCFDF5 /* BusinessList.swift */; };
+		662591AE26EB311500CCFDF5 /* BusinessSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662591AD26EB311500CCFDF5 /* BusinessSectionHeader.swift */; };
+		662591B026EB31E500CCFDF5 /* BusinessSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662591AF26EB31E500CCFDF5 /* BusinessSection.swift */; };
+		662591B226EB7C3700CCFDF5 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662591B126EB7C3700CCFDF5 /* BusinessCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		6625919F26EA32AA00CCFDF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		662591A126EA34DC00CCFDF5 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		662591A326EA374300CCFDF5 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
+		662591A826EB2A2A00CCFDF5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		662591AB26EB2E9900CCFDF5 /* BusinessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessList.swift; sourceTree = "<group>"; };
+		662591AD26EB311500CCFDF5 /* BusinessSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSectionHeader.swift; sourceTree = "<group>"; };
+		662591AF26EB31E500CCFDF5 /* BusinessSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSection.swift; sourceTree = "<group>"; };
+		662591B126EB7C3700CCFDF5 /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +114,45 @@
 			isa = PBXGroup;
 			children = (
 				6625918B26E94A4800CCFDF5 /* LaunchView.swift */,
+				662591A526EB29FB00CCFDF5 /* Onboarding */,
+				662591A726EB2A1300CCFDF5 /* Home */,
+				662591A626EB2A0A00CCFDF5 /* Denied */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		662591A526EB29FB00CCFDF5 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		662591A626EB2A0A00CCFDF5 /* Denied */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Denied;
+			sourceTree = "<group>";
+		};
+		662591A726EB2A1300CCFDF5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				662591A826EB2A2A00CCFDF5 /* HomeView.swift */,
+				662591AA26EB2E8500CCFDF5 /* List */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		662591AA26EB2E8500CCFDF5 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				662591AB26EB2E9900CCFDF5 /* BusinessList.swift */,
+				662591AF26EB31E500CCFDF5 /* BusinessSection.swift */,
+				662591AD26EB311500CCFDF5 /* BusinessSectionHeader.swift */,
+				662591B126EB7C3700CCFDF5 /* BusinessCell.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,12 +224,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				662591B026EB31E500CCFDF5 /* BusinessSection.swift in Sources */,
 				662591A026EA32AA00CCFDF5 /* Constants.swift in Sources */,
 				6625918C26E94A4800CCFDF5 /* LaunchView.swift in Sources */,
+				662591AE26EB311500CCFDF5 /* BusinessSectionHeader.swift in Sources */,
 				662591A426EA374300CCFDF5 /* BusinessSearch.swift in Sources */,
+				662591B226EB7C3700CCFDF5 /* BusinessCell.swift in Sources */,
 				6625919E26E9F7CC00CCFDF5 /* Secret.swift in Sources */,
 				662591A226EA34DC00CCFDF5 /* Business.swift in Sources */,
+				662591AC26EB2E9900CCFDF5 /* BusinessList.swift in Sources */,
 				6625918A26E94A4800CCFDF5 /* CitySightsApp.swift in Sources */,
+				662591A926EB2A2A00CCFDF5 /* HomeView.swift in Sources */,
 				6625919C26E94BD500CCFDF5 /* ContentModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,7 @@ import CoreLocation
 class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
+    @Published var authorizationState = CLAuthorizationStatus.notDetermined
     
     @Published var restaurants = [Business]()
     @Published var sights = [Business]()
@@ -28,6 +29,10 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // MARK - Location Manager Delegate Methods
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
+        // Update the authorizationState property
+        authorizationState = locationManager.authorizationStatus
+        
         if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
             // We have permission
             // Start geolocating the user , after we get permission
@@ -97,12 +102,23 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                     do {
                         let result = try decoder.decode(BusinessSearch.self, from: data!)
                         
+                        // Sort businesses
+                        var sortedBusinesses = result.businesses
+                        sortedBusinesses.sort { b1, b2 in
+                            return b1.distance ?? 0 < b2.distance ?? 0
+                        }
+                        
+                        // Call getImage function of the businesses
+                        for b in sortedBusinesses {
+                            b.getImageData()
+                        }
+                        
                         DispatchQueue.main.async {
                             switch category {
                             case K.sightsKey:
-                                self.sights = result.businesses
+                                self.sights = sortedBusinesses
                             case K.restaurantsKey:
-                                self.restaurants = result.businesses
+                                self.restaurants = sortedBusinesses
                             default:
                                 break
                             }
