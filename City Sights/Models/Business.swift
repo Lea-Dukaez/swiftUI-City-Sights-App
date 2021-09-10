@@ -20,7 +20,7 @@ class Business: Decodable, Identifiable, ObservableObject {
     var reviewCount: Int?
     var categories: [Category]?
     var rating: Double?
-    var coodinates: Coordinate?
+    var coordinates: Coordinate?
     var transactions: [String]?
     var location: Location?
     var phone: String?
@@ -39,7 +39,7 @@ class Business: Decodable, Identifiable, ObservableObject {
         case url
         case categories
         case rating
-        case coodinates
+        case coordinates
         case transactions
         case location
         case phone
@@ -68,7 +68,7 @@ class Business: Decodable, Identifiable, ObservableObject {
     }
     
     static func getTestData() -> Business {
-        var b = Business()
+        let b = Business()
         b.name = "India PlayHouse"
         b.location?.address1 = "450 Post St."
         b.location?.city = "San Francisco"
