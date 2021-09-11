@@ -43,11 +43,34 @@ struct HomeView: View {
                     
                 } else {
                     // show map
-                    BusinessMap(selectedBusiness: $selectedBusiness)
-                        .ignoresSafeArea()
-                        .sheet(item: $selectedBusiness) { business in
-                            BusinessDetail(business: business)
-                        }
+                    ZStack (alignment: .top)  {
+                        
+                        BusinessMap(selectedBusiness: $selectedBusiness)
+                            .ignoresSafeArea()
+                            .sheet(item: $selectedBusiness) { business in
+                                BusinessDetail(business: business)
+                                
+                            }
+                        
+                        // Rectangle Overlay
+                        ZStack {
+                            Rectangle()
+                                .frame(height:48)
+                                .foregroundColor(.white)
+                                .shadow(radius: 10).cornerRadius(5)
+                            HStack {
+                                Image(systemName: "mappin")
+                                Text("Waterloo")
+                                Spacer()
+                                Button(action: {
+                                    self.isMapShowing = false
+                                }, label: {
+                                    Text("Switch to Map View")
+                                })
+                            }.padding(.horizontal)
+                        }.padding()
+                    }
+
                 }
             }
         }

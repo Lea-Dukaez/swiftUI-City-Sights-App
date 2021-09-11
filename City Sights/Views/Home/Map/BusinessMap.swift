@@ -47,6 +47,8 @@ struct BusinessMap: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        
+        // Data is still coming back from the background so we need to implement this method
         // is called severals times as the data changes
         // Remove all annotations
         uiView.removeAnnotations(uiView.annotations)
