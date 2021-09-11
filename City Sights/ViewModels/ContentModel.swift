@@ -22,7 +22,9 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         // Set ContentModel as Delegate of the location manager
         locationManager.delegate = self
-        
+    }
+    
+    func requestGeoloocationPermission() {
         // Request permission from user
         locationManager.requestWhenInUseAuthorization()
     }
